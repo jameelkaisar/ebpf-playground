@@ -15,10 +15,14 @@ sudo apt update
 
 # Install build dependencies
 sudo apt install git make pkg-config libelf-dev build-essential zlib1g-dev -y
+sudo apt install man-db docutils-common -y
 
-# Build and install bpftool
+# Build and install bpftool and docs
 git clone https://github.com/libbpf/bpftool.git --recursive
 cd bpftool/src/
+make
+sudo make install
+cd ../docs/
 make
 sudo make install
 cd ../..
@@ -26,16 +30,21 @@ rm -rf bpftool/
 
 # Test bpftool
 bpftool --help
+man bpftool
 ```
 
 ### Fedora (Source)
 ```bash
 # Install build dependencies
 sudo dnf install git make pkg-config elfutils-libelf-devel gcc zlib-devel -y
+sudo dnf install man-db python3-docutils -y
 
-# Build and install bpftool
+# Build and install bpftool and docs
 git clone https://github.com/libbpf/bpftool.git --recursive
 cd bpftool/src/
+make
+sudo make install
+cd ../docs/
 make
 sudo make install
 cd ../..
@@ -43,6 +52,7 @@ rm -rf bpftool/
 
 # Test bpftool
 bpftool --help
+man bpftool
 ```
 
 ## Usage
