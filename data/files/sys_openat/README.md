@@ -16,7 +16,9 @@ clang -O2 -g -Wall loader.c -o loader.out -lbpf
 ## Test the working
 ```bash
 cat sample.txt
-cat sample_hijacked.txt
+sudo cat sample.txt
+cat sensitive.txt
+sudo cat sensitive.txt
 ```
 
 ## Execute loader file
@@ -27,7 +29,9 @@ sudo ./loader.out
 ## Test the working
 ```bash
 cat sample.txt
-cat sample_hijacked.txt
+sudo cat sample.txt
+cat sensitive.txt
+sudo cat sensitive.txt
 
 # This will not be hijacked
 cat ../sys_openat/sample.txt

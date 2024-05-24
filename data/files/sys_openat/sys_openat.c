@@ -4,6 +4,11 @@
 #include <stdint.h> // uint32_t, uint64_t, int32_t, int64_t
 
 
+// Signal Definition: SIGKILL
+// https://elixir.bootlin.com/linux/v6.1/source/arch/x86/include/uapi/asm/signal.h#L32
+#define SIGKILL 9
+
+
 // Syscall Definition: sys_openat
 // https://elixir.bootlin.com/linux/v6.1/source/fs/open.c#L1337
 
@@ -57,15 +62,27 @@ struct sys_exit_openat_args {
 
 SEC("tracepoint/syscalls/sys_enter_openat")
 int trace_sys_enter_openat(struct sys_enter_openat_args *ctx) {
+    // Access the uid of the current process
+    uint32_t uid = bpf_get_current_uid_gid();
+
     // Read the filename
     char filename[256];
     bpf_probe_read_user_str(filename, sizeof(filename), ctx->filename);
 
-    // Check if the filename is "sample.txt"
-    if (bpf_strncmp(filename, 10, "sample.txt") == 0) {
-        bpf_printk("Hijacking openat syscall");
-        // Change the filename to "sample_hijacked.txt"
-        bpf_probe_write_user((char*)ctx->filename, "sample_hijacked.txt", 20);
+    // Filter root user
+    if (uid != 0) {
+        // Check if the filename is "sample.txt"
+        if (bpf_strncmp(filename, 10, "sample.txt") == 0) {
+            bpf_printk("Hijacking openat syscall");
+            // Change the filename to "sample_hijacked.txt"
+            bpf_probe_write_user((char*)ctx->filename, "sample_hijacked.txt", 20);
+        }
+        // Check if the filename is "sensitive.txt"
+        else if (bpf_strncmp(filename, 13, "sensitive.txt") == 0) {
+            bpf_printk("Denying openat syscall");
+            // Send a SIGKILL signal to the process
+            bpf_send_signal(SIGKILL);
+        }
     }
 
     bpf_printk("Enter: syscall=%d, filename=%s", ctx->__syscall_nr, ctx->filename);
