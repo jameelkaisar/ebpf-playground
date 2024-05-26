@@ -14,7 +14,7 @@ sudo dnf install bpftool -y
 sudo apt update
 
 # Install build dependencies
-sudo apt install git make pkg-config libelf-dev build-essential zlib1g-dev -y
+sudo apt install git make pkg-config libelf-dev build-essential zlib1g-dev llvm -y
 sudo apt install man-db docutils-common -y
 
 # Build and install bpftool and docs
@@ -29,14 +29,14 @@ cd ../..
 rm -rf bpftool/
 
 # Test bpftool
-bpftool --help
+sudo bpftool --help
 man bpftool
 ```
 
 ### Fedora (Source)
 ```bash
 # Install build dependencies
-sudo dnf install git make pkg-config elfutils-libelf-devel gcc zlib-devel -y
+sudo dnf install git make pkg-config elfutils-libelf-devel gcc zlib-devel llvm -y
 sudo dnf install man-db python3-docutils -y
 
 # Build and install bpftool and docs
@@ -51,12 +51,12 @@ cd ../..
 rm -rf bpftool/
 
 # Test bpftool
-bpftool --help
+sudo bpftool --help
 man bpftool
 ```
 
 ## Usage
 ### Generate vmlinux.h Header File
 ```bash
-bpftool btf dump file /sys/kernel/btf/vmlinux format c > vmlinux.h
+sudo bpftool btf dump file /sys/kernel/btf/vmlinux format c > vmlinux.h
 ```
