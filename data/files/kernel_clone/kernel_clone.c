@@ -94,6 +94,7 @@ int kprobe__kernel_clone(struct pt_regs *ctx) {
 
     // exit_signal is set to SIGCHLD which has a value of 17
     // https://elixir.bootlin.com/linux/v6.1/source/kernel/fork.c#L2755
+    // https://elixir.bootlin.com/linux/v6.1/source/arch/x86/include/uapi/asm/signal.h#L40
     bpf_printk("Beg: kernel_clone, Comm: %s, PID: %d, exit_signal: %d", comm, pid, args.exit_signal);
 
     return 0;
@@ -108,7 +109,7 @@ int kretprobe__kernel_clone(struct pt_regs *ctx) {
     // Return value is stored in rax register
     // #define PT_REGS_RC(x) ((x)->ax)
     // rax register stores the return value of the function in x86_64
-    // Check: man syscall for more information
+    // Check: syscall manpage for more information
     pid_t ret = PT_REGS_RC(ctx);
 
     bpf_printk("End: kernel_clone, Comm: %s, Parent PID: %d, Child PID: %d", comm, pid, ret);
