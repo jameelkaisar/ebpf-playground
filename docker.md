@@ -23,15 +23,15 @@ docker build -t ebpf-fedora:40 .
 ## Start Container
 ```bash
 # Debian
-docker run -d --privileged --name ebpf-debian ebpf-debian:12
+docker run -d --privileged -v $PWD/../../.:/home/ebpf-playground --name ebpf-debian ebpf-debian:12
 docker exec -it ebpf-debian bash
 
 # Ubuntu
-docker run -d --privileged --name ebpf-ubuntu ebpf-ubuntu:22.04
+docker run -d --privileged -v $PWD/../../.:/home/ebpf-playground --name ebpf-ubuntu ebpf-ubuntu:22.04
 docker exec -it ebpf-ubuntu bash
 
 # Fedora
-docker run -d --privileged --name ebpf-fedora ebpf-fedora:40
+docker run -d --privileged -v $PWD/../../.:/home/ebpf-playground --name ebpf-fedora ebpf-fedora:40
 docker exec -it ebpf-fedora bash
 ```
 

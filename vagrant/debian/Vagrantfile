@@ -6,7 +6,7 @@ Vagrant.configure("2") do |config|
     config.vm.box_check_update = false
     config.vm.hostname = "ebpf-debian"
     # config.vm.network "forwarded_port", id: "ssh", guest: 22, host: 2222
-    config.vm.synced_folder "../../data", "/vagrant_data"
+    config.vm.synced_folder "../../.", "/home/ebpf-playground"
 
     config.vm.provider "virtualbox" do |vb|
         vb.name = "ebpf-debian"
