@@ -1,7 +1,7 @@
 # Common Scripts
 
 ## Log Reader
-Prints Kernel Debug Logs
+- Prints Kernel Debug Logs
 
 ### Compile log reader
 ```bash

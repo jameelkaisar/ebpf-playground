@@ -1,6 +1,6 @@
 # kernel_clone Tracer (kprobe and kretprobe)
-Traces `kernel_clone` kernel function invocations
-`kprobes` may change over the versions of the Linux kernel
+- Traces `kernel_clone` kernel function invocations
+- `kprobes` may change over the versions of the Linux kernel
 
 ## Compile bpf file
 ```bash

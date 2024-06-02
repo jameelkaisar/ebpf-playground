@@ -1,5 +1,5 @@
 # openat Tracer
-Traces `openat` system call invocations
+- Traces `openat` system call invocations
 
 ## Compile bpf file
 ```bash

@@ -1,7 +1,7 @@
 # execve Tracer (vmlinux.h)
-Traces `execve` system call invocations
-Fetches the process path and the process pwd
-`vmlinux.h` contains all the type definitions that the running Linux kernel uses in its own source code
+- Traces `execve` system call invocations
+- Fetches the process path and the process pwd
+- `vmlinux.h` contains all the type definitions that the running Linux kernel uses in its own source code
 
 ## Generate vmlinux.h header file
 ```bash

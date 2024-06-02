@@ -1,8 +1,8 @@
 # openat Tracer (tracepoint)
-Modifies `openat` system call invocations
-Replaces the `sample.txt` file with `sample_hijacked.txt` file for non-root users
-Blocks the access of `sensitive.txt` file for non-root users
-`tracepoints` are stable over the versions of the Linux kernel
+- Modifies `openat` system call invocations
+- Replaces the `sample.txt` file with `sample_hijacked.txt` file for non-root users
+- Blocks the access of `sensitive.txt` file for non-root users
+- `tracepoints` are stable over the versions of the Linux kernel
 
 ## Compile bpf file
 ```bash

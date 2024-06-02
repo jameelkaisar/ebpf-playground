@@ -1,5 +1,5 @@
 # XDP Pass
-Log Size of All Ingress Network Packets
+- Log Size of All Ingress Network Packets
 
 ## Compile bpf file
 ```bash

@@ -1,5 +1,5 @@
 # XDP Block
-Block a domain with static DNS A records
+- Block a domain with static DNS A records
 
 ## Compile bpf file
 ```bash
