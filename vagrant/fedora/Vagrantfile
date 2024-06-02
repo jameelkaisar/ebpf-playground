@@ -2,11 +2,16 @@
 # vi: set ft=ruby :
 
 Vagrant.configure("2") do |config|
-    config.vm.box = "generic/fedora39" # "generic/fedora40" not available as of now
+    config.vm.box = "generic/fedora38" # "generic/fedora40" not available as of now
     config.vm.box_check_update = false
     config.vm.hostname = "ebpf-fedora"
     # config.vm.network "forwarded_port", id: "ssh", guest: 22, host: 2222
     config.vm.synced_folder "../../.", "/home/ebpf-playground"
+
+    # Fixes: Authentication failure
+    config.ssh.username = "vagrant";
+    config.ssh.password = "vagrant";
+    config.ssh.insert_key = true;
 
     config.vm.provider "virtualbox" do |vb|
         vb.name = "ebpf-fedora"
