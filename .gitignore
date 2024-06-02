@@ -1,2 +1,4 @@
+.vagrant/
 *.out
 *.o
+vmlinux.h
