@@ -1,0 +1,53 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+    config.vm.box = "generic/ubuntu2204"
+    config.vm.box_check_update = false
+    config.vm.hostname = "ebpf-ubuntu"
+    # config.vm.network "forwarded_port", id: "ssh", guest: 22, host: 2222
+    config.vm.synced_folder "../../.", "/home/ebpf-playground"
+
+    config.vm.provider "virtualbox" do |vb|
+        vb.name = "ebpf-ubuntu"
+        vb.gui = false
+        vb.memory = "1024"
+        vb.cpus = "2"
+    end
+
+    config.vm.provision "shell", inline: <<-SHELL
+        # Update Package Repository
+        apt update
+
+        # Setup libbpf
+        apt install clang gcc-multilib libbpf-dev -y
+
+        # Setup libxdp
+        apt install git make pkg-config build-essential clang m4 zlib1g-dev libelf-dev libpcap-dev -y
+        git clone https://github.com/xdp-project/xdp-tools.git
+        cd xdp-tools/
+        make libxdp
+        make libxdp_install
+        cd ..
+        rm -rf xdp-tools/
+
+        # Setup bpftool
+        apt install wget -y
+        wget https://github.com/libbpf/bpftool/releases/download/v7.4.0/bpftool-v7.4.0-amd64.tar.gz
+        tar -xzf bpftool-v7.4.0-amd64.tar.gz
+        install -m 755 bpftool /usr/sbin
+        rm -rf bpftool-v7.4.0-amd64.tar.gz bpftool
+
+        # Setup bpftrace
+        apt install bpftrace -y
+
+        # Setup eunomia-bpf
+        apt install clang llvm wget fuse3 -y
+        wget https://github.com/eunomia-bpf/eunomia-bpf/releases/latest/download/ecc
+        install -m 755 ecc /usr/bin
+        rm -rf ecc
+        wget https://github.com/eunomia-bpf/eunomia-bpf/releases/latest/download/ecli
+        install -m 755 ecli /usr/sbin
+        rm -rf ecli
+    SHELL
+end
