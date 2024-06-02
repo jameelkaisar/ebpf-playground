@@ -7,7 +7,8 @@
 
 ## Change Directory
 ```bash
-cd vagrant/
+# Debian VM
+cd vagrant/debian/
 ```
 
 ## Provision
