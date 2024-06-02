@@ -34,5 +34,14 @@ Vagrant.configure("2") do |config|
 
         # Setup bpftrace
         apt install bpftrace -y
+
+        # Setup eunomia-bpf
+        apt install clang llvm wget -y
+        wget https://github.com/eunomia-bpf/eunomia-bpf/releases/latest/download/ecc
+        install -m 755 ecc /usr/bin
+        rm -rf ecc
+        wget https://github.com/eunomia-bpf/eunomia-bpf/releases/latest/download/ecli
+        install -m 755 ecli /usr/sbin
+        rm -rf ecli
     SHELL
 end

@@ -25,6 +25,15 @@ RUN apt install wget -y && \
 # Setup bpftrace
 RUN apt install bpftrace -y
 
+# Setup eunomia-bpf
+RUN apt install clang llvm wget -y && \
+    wget https://github.com/eunomia-bpf/eunomia-bpf/releases/latest/download/ecc && \
+    install -m 755 ecc /usr/bin && \
+    rm -rf ecc && \
+    wget https://github.com/eunomia-bpf/eunomia-bpf/releases/latest/download/ecli && \
+    install -m 755 ecli /usr/sbin && \
+    rm -rf ecli
+
 # Mount debugfs
 CMD mount -t debugfs none /sys/kernel/debug && \
     sleep infinity
