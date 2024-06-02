@@ -22,6 +22,9 @@ RUN apt install wget -y && \
     install -m 755 bpftool /usr/sbin && \
     rm -rf bpftool-v7.4.0-amd64.tar.gz bpftool
 
+# Setup bpftrace
+RUN apt install bpftrace -y
+
 # Mount debugfs
 CMD mount -t debugfs none /sys/kernel/debug && \
     sleep infinity

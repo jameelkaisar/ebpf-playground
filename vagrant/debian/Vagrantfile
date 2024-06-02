@@ -31,5 +31,8 @@ Vagrant.configure("2") do |config|
         tar -xzf bpftool-v7.4.0-amd64.tar.gz
         install -m 755 bpftool /usr/sbin
         rm -rf bpftool-v7.4.0-amd64.tar.gz bpftool
+
+        # Setup bpftrace
+        apt install bpftrace -y
     SHELL
 end

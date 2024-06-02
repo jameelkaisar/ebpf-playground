@@ -12,6 +12,9 @@ RUN dnf install bpftool -y
 # Install mount
 RUN dnf install util-linux-ng -y
 
+# Setup bpftrace
+RUN dnf install bpftrace -y
+
 # Mount debugfs
 CMD mount -t debugfs none /sys/kernel/debug && \
     sleep infinity
