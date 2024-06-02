@@ -36,7 +36,7 @@ Vagrant.configure("2") do |config|
         apt install bpftrace -y
 
         # Setup eunomia-bpf
-        apt install clang llvm wget -y
+        apt install clang llvm wget fuse3 -y
         wget https://github.com/eunomia-bpf/eunomia-bpf/releases/latest/download/ecc
         install -m 755 ecc /usr/bin
         rm -rf ecc

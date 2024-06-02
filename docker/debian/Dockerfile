@@ -20,7 +20,7 @@ RUN apt install wget -y && \
 RUN apt install bpftrace -y
 
 # Setup eunomia-bpf
-RUN apt install clang llvm wget -y && \
+RUN apt install clang llvm wget fuse3 -y && \
     wget https://github.com/eunomia-bpf/eunomia-bpf/releases/latest/download/ecc && \
     install -m 755 ecc /usr/bin && \
     rm -rf ecc && \

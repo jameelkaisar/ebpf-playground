@@ -16,7 +16,7 @@ RUN dnf install util-linux-ng -y
 RUN dnf install bpftrace -y
 
 # Setup eunomia-bpf
-RUN dnf install clang llvm wget -y && \
+RUN dnf install clang llvm wget fuse3 -y && \
     wget https://github.com/eunomia-bpf/eunomia-bpf/releases/latest/download/ecc && \
     install -m 755 ecc /usr/bin && \
     rm -rf ecc && \

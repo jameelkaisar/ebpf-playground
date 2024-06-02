@@ -6,7 +6,7 @@
 ### Debian/Ubuntu
 ```bash
 # Install Dependencies
-sudo apt install clang llvm wget -y
+sudo apt install clang llvm wget fuse3 -y
 
 # Install ecc
 wget https://github.com/eunomia-bpf/eunomia-bpf/releases/latest/download/ecc
@@ -22,7 +22,7 @@ rm -rf ecli
 ### Fedora
 ```bash
 # Install Dependencies
-sudo dnf install clang llvm wget -y
+sudo dnf install clang llvm wget fuse3 -y
 
 # Install ecc
 wget https://github.com/eunomia-bpf/eunomia-bpf/releases/latest/download/ecc
