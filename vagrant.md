@@ -7,8 +7,14 @@
 
 ## Change Directory
 ```bash
-# Debian VM
+# Debian
 cd vagrant/debian/
+
+# Ubuntu
+cd vagrant/ubuntu/
+
+# Fedora
+cd vagrant/fedora/
 ```
 
 ## Provision
